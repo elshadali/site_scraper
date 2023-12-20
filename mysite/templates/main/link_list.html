@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scraper</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 m-5">
+                <h1>Link Collector</h1>
+            </div>
+        </div>
+
+        <div class="row m-5">
+            <div class="col-md-4">
+                <form method="POST" action="/">
+                    {% csrf_token %}
+                    <input class="form-control" name="site" id="site" type="text" placeholder="Enter the site address">
+                </div>
+                <div class="col-md-1">
+                    <button class="btn btn-primary" type="submit">Scrape</button>
+                </div>
+                <div class="col-md-6">
+                    <a class="btn btn-warning" href="/delete">Delete</a>
+                </div>
+
+                </form>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 m-2">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Address</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for elem in data %}
+                      <tr>
+                        <th scope="row">{{elem.id}}</th>
+                        <td>{{elem.name}}</td>
+                        <td>{{elem.address}}</td>
+                      </tr>
+                        {% endfor %}
+                    </tbody>
+                  </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    
+</body>
+</html>
